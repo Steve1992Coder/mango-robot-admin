@@ -117,7 +117,6 @@ const submitForm = (formEl: FormInstance | undefined) => {
       console.log(dynamicValidateForm)
     } else {
       ElMessage.error('表单验证失败！')
-      return false
     }
   })
 }

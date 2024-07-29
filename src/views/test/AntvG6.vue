@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import G6, { type IG6GraphEvent, type Item, type ModelConfig } from '@antv/g6'
+import G6, { type IG6GraphEvent, type IGroup, type Item, type ModelConfig } from '@antv/g6'
 import { onMounted } from 'vue'
 
 G6.registerNode('card-node', {
   draw: function drawShape(cfg: ModelConfig, group) {
     const r = 2
     const color = '#5B8FF9'
-    const size = cfg.size as number []
+    const size = cfg.size as number[]
     const w = size[0]
     const h = size[1]
     const shape = group.addShape('rect', {
@@ -52,20 +52,20 @@ G6.registerNode('card-node', {
       name: 'title'
     })
     cfg.children &&
-    group.addShape('marker', {
-      attrs: {
-        x: w / 2,
-        y: 0,
-        r: 6,
-        cursor: 'pointer',
-        symbol: cfg.collapsed ? G6.Marker.expand : G6.Marker.collapse,
-        stroke: '#666',
-        lineWidth: 1,
-        fill: '#fff'
-      },
-      // must be assigned in G6 3.3 and later versions. it can be any string you want, but should be unique in a custom item type
-      name: 'collapse-icon'
-    })
+      group.addShape('marker', {
+        attrs: {
+          x: w / 2,
+          y: 0,
+          r: 6,
+          cursor: 'pointer',
+          symbol: cfg.collapsed ? G6.Marker.expand : G6.Marker.collapse,
+          stroke: '#666',
+          lineWidth: 1,
+          fill: '#fff'
+        },
+        // must be assigned in G6 3.3 and later versions. it can be any string you want, but should be unique in a custom item type
+        name: 'collapse-icon'
+      })
     group.addShape('text', {
       attrs: {
         textBaseline: 'top',
@@ -82,7 +82,9 @@ G6.registerNode('card-node', {
   },
   setState(name, value, item) {
     if (name === 'collapsed') {
-      const marker = (item as Item).get('group').find((ele) => ele && ele.get('name') === 'collapse-icon')
+      const marker = (item as Item)
+        .get('group')
+        .find((ele: IGroup) => ele && ele.get('name') === 'collapse-icon')
       const icon = value ? G6.Marker.expand : G6.Marker.collapse
       marker.attr('symbol', icon)
     }
@@ -181,13 +183,10 @@ onMounted(() => {
       graph.changeSize(container.scrollWidth, container.scrollHeight)
     }
 })
-
 </script>
 
 <template>
   <div id="container"></div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
