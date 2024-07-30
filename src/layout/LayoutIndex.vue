@@ -18,9 +18,7 @@
           <layoutBreadCrumb />
         </el-header>
         <el-main>
-          <el-card>
-            <RouterView />
-          </el-card>
+          <RouterView />
         </el-main>
       </el-container>
     </el-container>

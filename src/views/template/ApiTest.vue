@@ -1,9 +1,11 @@
 <template>
-  <el-button type="primary" @click="handleGetTest()">get测试</el-button>
-  <el-button type="primary" @click="handlePostTest()">post测试</el-button>
-  <el-button type="primary" @click="handlePutTest()">put测试</el-button>
-  <el-button type="primary" @click="handleDeleteTest()">delete测试</el-button>
-  <el-button type="primary" @click="handlePostFormTest()">postForm测试</el-button>
+  <el-card>
+    <el-button type="primary" @click="handleGetTest()">get测试</el-button>
+    <el-button type="primary" @click="handlePostTest()">post测试</el-button>
+    <el-button type="primary" @click="handlePutTest()">put测试</el-button>
+    <el-button type="primary" @click="handleDeleteTest()">delete测试</el-button>
+    <el-button type="primary" @click="handlePostFormTest()">postForm测试</el-button>
+  </el-card>
 </template>
 <script setup lang="ts">
 import { ElMessage } from 'element-plus'

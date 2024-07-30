@@ -4,7 +4,7 @@
     <div class="login-form">
       <el-form ref="loginFormRef" :model="form" :rules="rules">
         <el-form-item>
-          <h2>Robot Admin</h2>
+          <h2>Mango Robot Admin</h2>
         </el-form-item>
         <el-form-item prop="userName">
           <el-input v-model="form.userName" placeholder="用户名" />
@@ -42,7 +42,7 @@ const submitForm = async (formEl: FormInstance | undefined) => {
   if (!formEl) return
   await formEl.validate((valid: any) => {
     if (valid) {
-      router.push('/')
+      router.push('/index')
     }
   })
 }

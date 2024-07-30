@@ -116,9 +116,9 @@ const data = {
 onMounted(() => {
   const container = document.getElementById('container')
   const width = 1000
-  const height = 600
+  const height = 500
   const toolbar = new G6.ToolBar({
-    position: { x: 10, y: 10 }
+    position: { x: 260, y: 150 }
   })
   const graph = new G6.TreeGraph({
     container: 'container',
@@ -186,7 +186,9 @@ onMounted(() => {
 </script>
 
 <template>
-  <div id="container"></div>
+  <el-card>
+    <div id="container"></div>
+  </el-card>
 </template>
 
 <style scoped></style>

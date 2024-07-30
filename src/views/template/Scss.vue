@@ -1,9 +1,11 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div class="example">
-    <p>Hover me to see the effect.</p>
-  </div>
+  <el-card>
+    <div class="example">
+      <p>Hover me to see the effect.</p>
+    </div>
+  </el-card>
 </template>
 
 <style scoped lang="scss">

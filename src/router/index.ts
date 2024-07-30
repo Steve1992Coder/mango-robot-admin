@@ -18,7 +18,7 @@ const router = createRouter({
       path: '/',
       name: 'menu',
       component: LayoutIndexVue,
-      redirect: '/index',
+      redirect: '/login',
       children: [
         {
           path: '/index',
