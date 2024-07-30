@@ -57,7 +57,7 @@ const isCollapse = ref(false)
 
 .el-main {
   height: calc(100vh - 100px);
-  background-color: #e5e9f2;
+  background-color: #f2f3f5;
 }
 
 .el-aside {

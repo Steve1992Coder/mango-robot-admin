@@ -10,6 +10,7 @@ import router from './router'
 import mock from '@/mock'
 import './assets/iconfont/iconfont.js'
 import SvgIcon from '@/components/SvgIcon.vue'
+import zhCn from 'element-plus/es/locale/lang/zh-cn'
 
 if (import.meta.env.MODE === 'development') {
   mock()
@@ -21,6 +22,6 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 }
 app.use(createPinia())
 app.use(router)
-app.use(ElementPlus)
+app.use(ElementPlus, { locale: zhCn })
 app.component('SvgIcon', SvgIcon)
 app.mount('#app')

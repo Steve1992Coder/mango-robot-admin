@@ -2,18 +2,18 @@
 
 <template>
   <div class="example">
-    <p>Hello, SCSS!</p>
+    <p>Hover me to see the effect.</p>
   </div>
 </template>
 
 <style scoped lang="scss">
 .example {
   p {
-    color: blue;
+    color: var(--el-color-primary);
     font-size: 20px;
 
     &:hover {
-      color: red;
+      color: var(--el-color-danger);
     }
   }
 }

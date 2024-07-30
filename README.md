@@ -48,12 +48,12 @@ npm run lint
 /
 ```
 
-### 测试界面
+### 模板界面
 
 ```text
-/test/api 接口  axios发起http mock.js模拟后端返回
-/test/draggable vue-draggable-plus实现双表格拖拉拽
-/test/dynamicForm element-plus el-form动态添加表单项
-/test/codeMirror codeMirror代码编辑器
-/test/antvG6 AntvG6 关系图
+/template/api 接口  axios发起http mock.js模拟后端返回
+/template/draggable vue-draggable-plus实现双表格拖拉拽
+/template/dynamicForm element-plus el-form动态添加表单项
+/template/codeMirror codeMirror代码编辑器
+/template/antvG6 AntvG6 关系图
 ```

@@ -1,5 +1,5 @@
-import test from '@/mock/test'
+import template from '@/mock/template'
 
 export default function mock() {
-  test()
+  template()
 }
