@@ -1,37 +1,51 @@
-# robot-admin
+<div align="center">
+  <img alt="Arco Design Logo" width="200" src="./src/assets/login-background.jpg"/>
 
-Vue3+Vite+Typescript+Element-plus+Tailwindcss+Axios+mock.js
+<br />
+
+  <h1>mango-robot-admin</h1>
+
+<br />
+
+基于Vue3 Element-plus vit 构建的后台管理模板
+
+<br />
+</div>
+
+## 环境
+- node >= 18.0.0
+- [在线预览](https://mango-robot-admin.vercel.app/)(需要翻墙)
 
 ## 命令
 
 ### 安装依赖
 
 ```sh
-npm install
+pnpm install
 ```
 
 ### 开发启动
 
 ```sh
-npm run dev
+pnpm run dev
 ```
 
 ### 生产构建
 
 ```sh
-npm run build
+pnpm run build
 ```
 
 ### 单元测试 [Vitest](https://vitest.dev/)
 
 ```sh
-npm run test:unit
+pnpm run test:unit
 ```
 
 ### 代码规范 [ESLint](https://eslint.org/)
 
 ```sh
-npm run lint
+pnpm run lint
 ```
 
 ## 界面
@@ -53,7 +67,8 @@ npm run lint
 ```text
 /template/api 接口  axios发起http mock.js模拟后端返回
 /template/draggable vue-draggable-plus实现双表格拖拉拽
-/template/dynamicForm element-plus el-form动态添加表单项
+/template/queryTable 简单查询表格
+/template/dynamicForm 动态添加表单项
 /template/codeMirror codeMirror代码编辑器
 /template/antvG6 AntvG6 关系图
 ```
