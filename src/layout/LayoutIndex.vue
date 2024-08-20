@@ -15,10 +15,14 @@
         :style="{ width: isCollapse ? 'calc(100vw - 64px)' : 'calc(100vw - 200px)' }"
       >
         <el-header>
-          <layoutBreadCrumb />
+        <TagsView class="tags-view"/>
         </el-header>
         <el-main>
-          <RouterView />
+          <router-view v-slot="{ Component }">
+            <keep-alive>
+              <component :is="Component" />
+            </keep-alive>
+          </router-view>
         </el-main>
       </el-container>
     </el-container>
@@ -29,7 +33,7 @@
 import { ref } from 'vue'
 import LayoutHeader from './components/LayoutHeader.vue'
 import LayoutLeft from '@/layout/components/LayoutLeft.vue'
-import LayoutBreadCrumb from '@/layout/components/LayoutBreadCrumb.vue'
+import TagsView from '@/layout/components/TagsView.vue'
 
 const isCollapse = ref(false)
 </script>
@@ -41,8 +45,10 @@ const isCollapse = ref(false)
 }
 
 .header {
+  height: 50px;
   background-color: var(--el-color-primary);
   border-bottom: 1px solid var(--el-border-color);
+  padding: 0 20px;
 }
 
 .main {
@@ -61,5 +67,9 @@ const isCollapse = ref(false)
 .el-aside {
   width: 200px;
   height: calc(100vh - 50px);
+}
+
+.tags-view {
+  width: 100%;
 }
 </style>
