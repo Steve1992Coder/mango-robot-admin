@@ -1,12 +1,19 @@
 <script setup lang="ts">
 import { useTagsView } from '@/stores/visitedViews'
 import { storeToRefs } from 'pinia'
+import { onMounted } from 'vue'
+import { useRoute } from 'vue-router'
 
 const visitedViewsStore = useTagsView()
 const { visitedViews, selectedView } = storeToRefs(visitedViewsStore)
-console.log('main', visitedViews)
+const route = useRoute()
+onMounted(() => {
+  const userTag = { name: route.meta['title'], routePath: route.path } as TagItem
+  visitedViewsStore.addVisitedView(userTag)
+  visitedViewsStore.updateSelectedView(userTag)
+})
+
 function isActive(route: TagItem) {
-  console.log('isActive', selectedView.value.routePath)
   return route.routePath === selectedView.value.routePath
 }
 
@@ -31,7 +38,7 @@ export interface TagItem {
         v-for="tag in visitedViews"
         ref="tag"
         :key="tag.routePath"
-        :class="isActive(tag)?'active':''"
+        :class="isActive(tag) ? 'active' : ''"
         :to="{ path: tag.routePath }"
         class="tags-view-item"
         @click="tagClick(tag)"
@@ -47,6 +54,7 @@ export interface TagItem {
 .tags-view-container {
   height: 50px;
   width: 100%;
+
   .tags-view-item {
     display: inline-block;
     position: relative;
@@ -60,16 +68,20 @@ export interface TagItem {
     font-size: 12px;
     margin-left: 5px;
     margin-top: 4px;
+
     &:first-of-type {
       margin-left: 15px;
     }
+
     &:last-of-type {
       margin-right: 15px;
     }
+
     &.active {
       background-color: #42b983;
       color: #fff;
       border-color: #42b983;
+
       &::before {
         content: '';
         background: #fff;
@@ -82,6 +94,7 @@ export interface TagItem {
       }
     }
   }
+
   .contextmenu {
     margin: 0;
     background: #fff;
@@ -93,11 +106,13 @@ export interface TagItem {
     font-size: 12px;
     font-weight: 400;
     color: #333;
-    box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, .3);
+    box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.3);
+
     li {
       margin: 0;
       padding: 7px 16px;
       cursor: pointer;
+
       &:hover {
         background: #eee;
       }
