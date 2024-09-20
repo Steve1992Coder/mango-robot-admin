@@ -15,13 +15,24 @@ export const useTagsView = defineStore('tagsView', () => {
     visitedViews.value = []
   }
   const delOthersVisitedViews = (view: TagItem) => {
-    visitedViews.value = visitedViews.value.filter((item) => item.name === view.name)
+    visitedViews.value = visitedViews.value.filter(
+      (item) => item.name === view.name && item.routePath === view.routePath
+    )
   }
   const hasVisitedView = (view: TagItem) => {
-    return visitedViews.value.some((item) => item.name === view.name)
+    return visitedViews.value.some(
+      (item) => item.name === view.name && item.routePath === view.routePath
+    )
   }
   const updateSelectedView = (view: TagItem) => {
     selectedView.value = view
+  }
+
+  const getLeftViews = (view: TagItem) => {
+    const index = visitedViews.value.findIndex(
+      (item) => item.name === view.name && item.routePath === view.routePath
+    )
+    return visitedViews.value[index - 1]
   }
   return {
     visitedViews,
@@ -31,6 +42,7 @@ export const useTagsView = defineStore('tagsView', () => {
     delAllVisitedViews,
     delOthersVisitedViews,
     hasVisitedView,
-    updateSelectedView
+    updateSelectedView,
+    getLeftViews
   }
 })

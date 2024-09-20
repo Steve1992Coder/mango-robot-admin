@@ -2,15 +2,23 @@
 import { useTagsView } from '@/stores/visitedViews'
 import { storeToRefs } from 'pinia'
 import { onMounted } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
+import { CircleClose } from '@element-plus/icons-vue'
 
 const visitedViewsStore = useTagsView()
 const { visitedViews, selectedView } = storeToRefs(visitedViewsStore)
 const route = useRoute()
+const router = useRouter()
 onMounted(() => {
-  const userTag = { name: route.meta['title'], routePath: route.path } as TagItem
-  visitedViewsStore.addVisitedView(userTag)
-  visitedViewsStore.updateSelectedView(userTag)
+  const indexTagView = { name: '首页', routePath: '/index' } as TagItem
+  visitedViewsStore.addVisitedView(indexTagView)
+  if (route.path !== '/index' && route.name !== '首页') {
+    const userTag = { name: route.meta['title'], routePath: route.path } as TagItem
+    visitedViewsStore.addVisitedView(userTag)
+    visitedViewsStore.updateSelectedView(userTag)
+  } else {
+    visitedViewsStore.updateSelectedView(indexTagView)
+  }
 })
 
 function isActive(route: TagItem) {
@@ -18,11 +26,18 @@ function isActive(route: TagItem) {
 }
 
 function closeSelectedTag(tag: TagItem) {
+  const leftTag = visitedViewsStore.getLeftViews(tag)
+  visitedViewsStore.updateSelectedView(leftTag)
+  router.push(leftTag.routePath)
   visitedViewsStore.delVisitedView(tag)
 }
 
 function tagClick(tag: TagItem) {
   visitedViewsStore.updateSelectedView(tag)
+}
+
+function isIndex(tag: TagItem) {
+  return tag.name === '首页' && tag.routePath === '/index'
 }
 
 export interface TagItem {
@@ -44,7 +59,9 @@ export interface TagItem {
         @click="tagClick(tag)"
       >
         {{ tag.name }}
-        <span class="el-icon-close" @click.prevent.stop="closeSelectedTag(tag)" />
+        <el-icon v-if="!isIndex(tag)" @click.prevent.stop="closeSelectedTag(tag)">
+          <CircleClose />
+        </el-icon>
       </router-link>
     </el-scrollbar>
   </div>
@@ -91,30 +108,6 @@ export interface TagItem {
         border-radius: 50%;
         position: relative;
         margin-right: 2px;
-      }
-    }
-  }
-
-  .contextmenu {
-    margin: 0;
-    background: #fff;
-    z-index: 3000;
-    position: absolute;
-    list-style-type: none;
-    padding: 5px 0;
-    border-radius: 4px;
-    font-size: 12px;
-    font-weight: 400;
-    color: #333;
-    box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.3);
-
-    li {
-      margin: 0;
-      padding: 7px 16px;
-      cursor: pointer;
-
-      &:hover {
-        background: #eee;
       }
     }
   }
