@@ -58,10 +58,10 @@ export interface TagItem {
         class="tags-view-item"
         @click="tagClick(tag)"
       >
-        {{ tag.name }}
-        <el-icon v-if="!isIndex(tag)" @click.prevent.stop="closeSelectedTag(tag)">
-          <CircleClose />
-        </el-icon>
+        <span>{{ tag.name }}</span>
+        <span v-if="!isIndex(tag)" @click.prevent.stop="closeSelectedTag(tag)" class="tag-close">
+          &#x2297;
+        </span>
       </router-link>
     </el-scrollbar>
   </div>
@@ -75,14 +75,14 @@ export interface TagItem {
   .tags-view-item {
     display: inline-block;
     position: relative;
-    cursor: pointer;
-    height: 26px;
-    line-height: 26px;
+    height: 40px;
+    line-height: 40px;
     border: 1px solid #d8dce5;
+    border-radius: 8px;
     color: #495060;
     background: #fff;
     padding: 0 8px;
-    font-size: 12px;
+    font-size: 16px;
     margin-left: 5px;
     margin-top: 4px;
 
@@ -95,20 +95,9 @@ export interface TagItem {
     }
 
     &.active {
-      background-color: #42b983;
+      background-color: var(--el-color-primary);
       color: #fff;
-      border-color: #42b983;
-
-      &::before {
-        content: '';
-        background: #fff;
-        display: inline-block;
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        position: relative;
-        margin-right: 2px;
-      }
+      border-color: var(--el-color-primary);
     }
   }
 }

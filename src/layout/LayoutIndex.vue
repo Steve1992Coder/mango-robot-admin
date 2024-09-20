@@ -15,7 +15,7 @@
         :style="{ width: isCollapse ? 'calc(100vw - 64px)' : 'calc(100vw - 200px)' }"
       >
         <el-header>
-        <TagsView class="tags-view"/>
+          <TagsView class="tags-view" />
         </el-header>
         <el-main>
           <router-view v-slot="{ Component }">
@@ -57,6 +57,8 @@ const isCollapse = ref(false)
 
 .el-header {
   height: 50px;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .el-main {
